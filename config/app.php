@@ -170,7 +170,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-    ])->toArray(),
+        // ...para crear permisos y roles
+        Spatie\Permission\PermissionServiceProvider::class,
+   
+        ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------
