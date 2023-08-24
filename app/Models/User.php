@@ -20,7 +20,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    use HasRoles;
     /**
      * The attributes that are mass assignable.
      *
@@ -65,5 +65,27 @@ class User extends Authenticatable
     public function estudiante(){
         return $this->hasOne(Estudiante::class,'id');
         //un estudiante pertenece a un solo estudiante (relacion uno a uno)
+    }
+
+    public  function adminlte_image(){
+        //Nos reegresa la imagen que pongamos en Jetstream
+        return asset('storage/'.$this->profile_photo_path);
+    }
+
+    public function adminlte_desc()
+    {
+        if (auth()->check()) {
+            // Si el usuario está autenticado, obtenemos su rol actual
+            return $this->getRoleNames()->first();
+        }
+
+        // Si el usuario no está autenticado, retornamos null o algún valor por defecto
+        return null;
+    }
+
+    public function adminlte_profile_url()
+    {
+        //Nos lleva a la vista ditar usuario
+        return 'user/profile';
     }
 }
