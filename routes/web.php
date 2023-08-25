@@ -33,7 +33,7 @@ Route::middleware([
 });
 
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth','verified']], function(){
     // Agrupa las rutas bajo el middleware 'auth', que requiere que el usuario inicie sesión para acceder a estas rutas.
 
     // Crea rutas para el recurso 'roles' usando el controlador 'RolController'.
